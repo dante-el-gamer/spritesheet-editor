@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sprite Sheet Editor</title>
+  <link rel="icon" href="icon.png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.cdnfonts.com/css/pusab" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Sprite Sheet Editor</h1>
+    </header>
+
+    <section class="load-section">
+      <label>
+        Sprite Sheet (.png):
+        <input type="file" id="imageLoader" accept="image/png">
+      </label>
+      <label>
+        Datos (.plist / .json):
+        <input type="file" id="dataLoader" accept=".plist,.json,.xml">
+      </label>
+      <button id="btnUnpack" onclick="unpack()">Extraer y Mostrar</button>
+    </section>
+
+    <section class="manage-section" id="manageSection" style="display:none">
+      <div class="manage-tools">
+        <button id="btnAddSprite" class="btn-success" onclick="openAddSprite()">+ Añadir Sprite</button>
+        <button id="btnRepack" onclick="repack()"> Re-empaquetar Todo</button>
+        <span class="sprite-count" id="spriteCount">0 sprites</span>
+      </div>
+    </section>
+
+    <div id="output"></div>
+  </div>
+
+  <input type="file" id="hiddenFileInput" accept="image/png,image/gif,image/jpeg" style="display:none">
+
+  <div class="modal-overlay" id="modalOverlay" style="display:none">
+    <div class="modal">
+      <h3 id="modalTitle">Nuevo Sprite</h3>
+      <img id="modalPreview" class="modal-preview" alt="preview">
+      <label for="modalName">Nombre del sprite:</label>
+      <input type="text" id="modalName" placeholder="ej: mi_sprite.png">
+      <p class="modal-error" id="modalError"></p>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+        <button id="modalConfirmBtn" class="btn-success" onclick="confirmModal()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
